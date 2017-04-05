@@ -9,6 +9,9 @@ Cloudboot Documentation
    :caption: Table of Contents:
 
    preface
+   arch
+   installation
+   bootos
    
 
 
