@@ -12,6 +12,7 @@ Cloudboot Documentation
    arch
    installation
    bootos
+   hardwareconf
    
 
 

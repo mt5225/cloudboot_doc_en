@@ -131,8 +131,8 @@ Driver Update
 .. note::
     User can update BootOS by apply CloudBoot updates, below update process is about update BootOS driver manually
 
-View Existing Drivers
-^^^^^^^^^^^^^^^^^^^^^^
+Browse Existing Drivers
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 BootOS is based on Centos and the driver folder remains the same, take network driver for example::
 
@@ -149,3 +149,18 @@ BootOS is based on Centos and the driver folder remains the same, take network d
 
 
 
+Update Driver
+^^^^^^^^^^^^^^
+
+Take igb driver for example, first, you need to install developer tools, kernel headers and related libraries::
+
+    yum install kernel-devel kernel-headers gcc make rpm-build wget
+
+Then download latest igb dirver source code and compile::
+
+    mkdir -p /root/rpmbuild/SOURCES/
+    wget -P /root/rpmbuild/SOURCES/ https://downloadmirror.intel.com/13663/eng/igb-5.3.2.tar.gz
+    tar zxpf /root/rpmbuild/SOURCES/igb-5.3.2.tar.gz
+    rpmbuild -bb igb-5.3.2/igb.spec
+
+Finally copy generated rpm file ``/root/rpmbuild/RPMS/x86_64/igb-5.3.2-1.x86_64.rpm`` into BootOS.
