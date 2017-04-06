@@ -13,6 +13,10 @@ Cloudboot Documentation
    installation
    bootos
    hardwareconf
+   os_template
+   vm
+   api
+   appendix
    
 
 

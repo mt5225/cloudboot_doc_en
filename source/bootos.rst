@@ -63,7 +63,7 @@ Configure boot environment for BootOS::
     APPEND initrd=http://osinstall.idcos.com/bootos/initrd.img console=tty0 selinux=0 biosdevname=0 SERVER_ADDR=http://osinstall.idcos.com
     IPAPPEND 2
 
-Parameter description:
+Parameter Note:
 
     * ``TIMEOUT 30``, wait for 3 seconds before boot into BootOS
     * load vmlinuz and initrd.img by http instead of tftp
@@ -115,7 +115,7 @@ Use following options to customize BootOS agent behavior::
     APPEND initrd=http://osinstall.idcos.com/bootos/initrd.img console=tty0 selinux=0 biosdevname=0 SERVER_ADDR=http://osinstall.idcos.com PRE=http://osinstall.idcos.com/pre.sh POST=http://osinstall.idcos.com/post.py
     IPAPPEND 2
 
-Parameter description:
+Note
 
     * ``PRE=http://osinstall.idcos.com/pre.sh``, run  *pre.sh* right after agent started
     * ``POST=http://osinstall.idcos.com/post.py``, run *post.py* before system reboot
