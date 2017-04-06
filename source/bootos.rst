@@ -63,7 +63,7 @@ Configure boot environment for BootOS::
     APPEND initrd=http://osinstall.idcos.com/bootos/initrd.img console=tty0 selinux=0 biosdevname=0 SERVER_ADDR=http://osinstall.idcos.com
     IPAPPEND 2
 
-Parameters in above boot configuration file:
+Parameter description:
 
     * ``TIMEOUT 30``, wait for 3 seconds before boot into BootOS
     * load vmlinuz and initrd.img by http instead of tftp
@@ -100,3 +100,52 @@ To switch to developer mode, add ``DEVELOPER=1`` setting in PXE configuration fi
 
 Advance Options
 ^^^^^^^^^^^^^^^^
+
+Use following options to customize BootOS agent behavior::
+
+    # cat /opt/cloudboot/var/lib/tftpboot/pxelinux.cfg/default
+    DEFAULT menu.c32
+    PROMPT 0
+    TIMEOUT 30
+
+    LABEL bootos
+    MENU LABEL ^BootOS
+    MENU DEFAULT
+    KERNEL http://osinstall.idcos.com/bootos/vmlinuz
+    APPEND initrd=http://osinstall.idcos.com/bootos/initrd.img console=tty0 selinux=0 biosdevname=0 SERVER_ADDR=http://osinstall.idcos.com PRE=http://osinstall.idcos.com/pre.sh POST=http://osinstall.idcos.com/post.py
+    IPAPPEND 2
+
+Parameter description:
+
+    * ``PRE=http://osinstall.idcos.com/pre.sh``, run  *pre.sh* right after agent started
+    * ``POST=http://osinstall.idcos.com/post.py``, run *post.py* before system reboot
+
+ .. note::
+        pre/post action supports script file as well as binary file
+
+|
+
+Driver Update
+===============
+
+.. note::
+    User can update BootOS by apply CloudBoot updates, below update process is about update BootOS driver manually
+
+View Existing Drivers
+^^^^^^^^^^^^^^^^^^^^^^
+
+BootOS is based on Centos and the driver folder remains the same, take network driver for example::
+
+    # ls /lib/modules/`uname -r`/kernel/drivers/net/
+    3c59x.ko     b44.ko      cnic.ko   e100.ko       ifb.ko      macvtap.ko     netxen          ppp_generic.ko  r6040.ko    slhc.ko        tg3.ko           virtio_net.ko
+    8139cp.ko    benet       cxgb3     enic          igb         mdio.ko        niu.ko          ppp_mppe.ko     r8169.ko    slip.ko        tlan.ko          vmxnet3
+    8139too.ko   bna         cxgb4     epic100.ko    igbvf       mii.ko         ns83820.ko      pppoe.ko        s2io.ko     smsc9420.ko    tulip            vxge
+    8390.ko      bnx2.ko     cxgb4vf   ethoc.ko      ipg.ko      mlx4           pch_gbe         pppol2tp.ko     sc92031.ko  starfire.ko    tun.ko           vxlan.ko
+    acenic.ko    bnx2x       dl2k.ko   fealnx.ko     ixgb        mlx5           pcmcia          pppox.ko        sfc         sundance.ko    typhoon.ko       wan
+    amd8111e.ko  bonding     dnet.ko   forcedeth.ko  ixgbe       myri10ge       pcnet32.ko      ppp_synctty.ko  sis190.ko   sungem.ko      usb              wimax
+    atl1c        can         dummy.ko  hyperv        ixgbevf     natsemi.ko     phy             qla3xxx.ko      sis900.ko   sungem_phy.ko  veth.ko          wireless
+    atl1e        cassini.ko  e1000     i40e          jme.ko      ne2k-pci.ko    ppp_async.ko    qlcnic          skge.ko     sunhme.ko      via-rhine.ko     xen-netfront.ko
+    atlx         chelsio     e1000e    i40evf        macvlan.ko  netconsole.ko  ppp_deflate.ko  qlge            sky2.ko     tehuti.ko      via-velocity.ko
+
+
+
