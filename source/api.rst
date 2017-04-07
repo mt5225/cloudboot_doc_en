@@ -11,8 +11,11 @@ This chapter describes CloudBoot web service API with code examples.
    :caption: CloudBoot API Referance
 
    api_user
-   device_import
-   status
-   log
-   hwconf
+   api_device_import
+   api_status
+   api_log
+   api_hwconf
+   api_pxe
+   api_os_template
+   api_networking
 

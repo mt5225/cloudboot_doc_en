@@ -1,18 +1,15 @@
 *********************************************
-Status Query
+PXE Query
 *********************************************
-
-Provision Job Status
-=====================
 
 Request
 ^^^^^^^^^^^^^^^^
 
-.. csv-table:: Request
+.. csv-table:: Request Format
     :header: Field, Description
     :widths: 5, 10
 
-    URL, "http://localhost:8083/api/osinstall/v1/device/isInInstallList"
+    URL, "http://localhost:8083/api/osinstall/v1/report/deviceMacInfo"
     encode, UTF-8
     method, HTTP POST
     payload, application/json
@@ -25,6 +22,7 @@ Payload
     :widths: 5, 5, 5, 15
 
     Sn,string,yes,device serial number
+    MAC,string,yes,device MAC address
 
 
 Payload Sample 
@@ -33,7 +31,8 @@ Payload Sample
 .. code-block:: json
 
     {
-        "Sn": "test"
+       "Sn": "test",
+       "Mac": "EA:1F:2d:3a:4H"
     }
 
 
@@ -43,21 +42,20 @@ Code Sample (PHP)
 
 .. code-block:: php
 
-   <?php
-        $data = array("Sn" => "test");
-        $str = json_encode($data);
+  <?php
+    $data = array("Sn" => "test","Mac" => "EA:1F:2d:3a:4H");
+    $str = json_encode($data);
+    $ch = curl_init('http://localhost:8083/api/osinstall/v1/report/deviceMacInfo');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $str);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($str))
+    );
 
-        $ch = curl_init('http://localhost:8083/api/osinstall/v1/device/isInInstallList');
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $str);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($str))
-        );
-
-        $result = curl_exec($ch);
-        echo $result;
+    $result = curl_exec($ch);
+    echo $result;
     ?>
 
 
@@ -70,8 +68,8 @@ Response
 
     Status, success or failure
     Content.Result, "
-    * ``true`` device is in provision queue
-    * ``false`` device is NOT in provision queue"
+    * ``true`` success
+    * ``false`` failed"
     Message, return message
 
 
@@ -84,6 +82,6 @@ Sample Response Message
         "Content": {
             "Result": "true"
         },
-        "Message": "Device is in provisioning queue",
+        "Message": "success",
         "Status": "success"
     }
