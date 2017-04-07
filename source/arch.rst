@@ -7,9 +7,11 @@ Architecture Diagram
 ======================
 
 
-.. image:: cloudboot_arch.png
+.. image:: images/cloudboot_arch.jpg
     :align: center
     :alt: Cloudboot System Architecture
+    :width: 480
+    
 
 
 As shown above, Cloudboot has six functional modules. Modules are oosely-coupled and communicate with each other via API.
@@ -50,9 +52,10 @@ OS Provision Workflow
 12. Run post installation script
 13. Update provisioning progress, update CMDB
 
-.. image:: cloudboot_os_flow.png
+.. image:: images/cloudboot_seq.jpg
     :align: center
     :alt: COS Provision Workflow
+     :width: 640
 
 
 
@@ -65,6 +68,6 @@ Cloudboot configures server hardware via open standard interface, any x86 server
 2. iDCOS verify the implementation and push the update to IDCStore
 3. End user update Cloudboot with new supported server online, or install it by offline package
 
-.. image:: cloudboot_upgrade.png
+.. image:: images/cloudboot_upgrade.jpg
     :align: center
     :alt: COS Provision Workflow
