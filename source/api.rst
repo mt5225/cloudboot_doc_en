@@ -12,4 +12,7 @@ This chapter describes CloudBoot web service API with code examples.
 
    api_user
    device_import
+   status
+   log
+   hwconf
 

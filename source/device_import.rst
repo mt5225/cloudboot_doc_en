@@ -5,10 +5,10 @@ Data Import
 Import Device
 ==============
 
-Request Format
+Request
 ^^^^^^^^^^^^^^^^
 
-.. csv-table:: Request Format
+.. csv-table:: Request
     :header: Field, Description
     :widths: 5, 10
 

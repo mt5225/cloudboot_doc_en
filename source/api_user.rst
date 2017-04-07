@@ -5,17 +5,17 @@ User Related
 Login
 ======
 
-Request Format
+Request
 ^^^^^^^^^^^^^^^^
 
-.. csv-table:: Request Format
+.. csv-table:: Request
     :header: Field, Description
     :widths: 5, 10
 
     URL, "http://localhost:8083/api/osinstall/v1/user/login"
     encode, UTF-8
     method, HTTP POST
-    payload, JSON
+    payload, application/json
 
 Payload
 ^^^^^^^^
@@ -101,17 +101,17 @@ Sample Response Message
 Logout
 =======
 
-Request Format
+Request
 ^^^^^^^^^^^^^^^^
 
-.. csv-table:: Request Format
+.. csv-table:: Request
     :header: Field, Description
     :widths: 5, 10
 
     URL, "http://localhost:8083/api/osinstall/v1/user/logout"
     encode, UTF-8
     method, HTTP POST
-    payload, JSON
+    payload, application/json
 
 Payload
 ^^^^^^^^
